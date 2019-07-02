@@ -1,0 +1,23 @@
+.Sandwitch {
+    width: 100%;
+    margin: auto;
+    height: 250px;
+    overflow: scroll;
+    text-align: center;
+    font-weight:  bold;
+    font-size: 1.2rem;
+}
+
+@media(min-width: 500px) and (min-height: 401px){
+    .Sandwitch{
+        width: 350px;
+        height: 300px;
+    }
+}
+
+@media(min-width: 100px) and (min-height: 700px){
+    .Sandwitch{
+        width: 700px;
+        height: 600px;
+    }
+}
