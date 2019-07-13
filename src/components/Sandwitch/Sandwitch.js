@@ -6,7 +6,7 @@ const sandwitch = (props) => {
     let ingreadientsPreperd  = Object.keys(props.ingredients)
     .map(igKey => {
         return [...Array(props.ingredients[igKey])].map((_, i) => {
-           return <SandwitchIngredient key = {igKey + 1} type = {igKey} />
+           return <SandwitchIngredient key = {igKey + i} type = {igKey} />
         });
     })
     .reduce((perv, recent)=>{

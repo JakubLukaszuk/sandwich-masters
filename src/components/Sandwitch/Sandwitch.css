@@ -6,6 +6,7 @@
     text-align: center;
     font-weight:  bold;
     font-size: 1.2rem;
+    box-sizing: border-box;
 }
 
 @media(min-width: 500px) and (min-height: 401px){
@@ -15,7 +16,7 @@
     }
 }
 
-@media(min-width: 100px) and (min-height: 700px){
+@media(min-width: 700px) and (min-height: 700px){
     .Sandwitch{
         width: 700px;
         height: 600px;

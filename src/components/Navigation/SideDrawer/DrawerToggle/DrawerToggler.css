@@ -1,0 +1,12 @@
+.HaburgerButton{
+    padding: 0 4px;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.bar{
+    width: 30px;
+    height: 4px;
+    background-color: white;
+    margin: 5px 0;
+  }
