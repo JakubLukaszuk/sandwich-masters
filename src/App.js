@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import Layout from './components/Layouts/Layout';
+import Layout from './containers/Layout/Layout';
 import SandwitchBuilder from './containers/SandwitchBuilder/SandwitchBuilder'
 
 class App extends Component {

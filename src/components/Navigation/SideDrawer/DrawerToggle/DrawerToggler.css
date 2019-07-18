@@ -1,4 +1,5 @@
 .HaburgerButton{
+    display: inline;
     padding: 0 4px;
     border: 1px solid white;
     border-radius: 5px;
@@ -10,3 +11,9 @@
     background-color: white;
     margin: 5px 0;
   }
+
+  @media (min-width: 500px) {
+    .HaburgerButton{
+        display: none;
+    }
+}

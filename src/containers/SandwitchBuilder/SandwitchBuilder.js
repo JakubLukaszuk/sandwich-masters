@@ -76,12 +76,12 @@ class BurgerBuidler extends Component {
     this.updatePurchaseState(updateIngredinets);
   }
 
-  purchaseCancleHandler = () =>{
-      this.setState({purchasing: false});
+  purchaseCancleHandler = () => {
+    this.setState({purchasing: false});
   }
 
   purchaseContinueHandler = () => {
-      alert('continue');
+    alert('continue');
   }
 
   render() {
@@ -93,22 +93,21 @@ class BurgerBuidler extends Component {
     }
     return (
       <Aux>
-        <Modal
-        show = {this.state.purchasing}
-        modalClosed = {this.purchaseCancleHandler}>
-          <OrderSummary ingredients={this.state.ingredients}
-          price= {this.state.toatalPrice}
-          purchaseCanclled = {this.purchaseCancleHandler}
-          purchaseContinued = {this.purchaseContinueHandler}/>
+        <Modal show={this.state.purchasing} modalClosed={this.purchaseCancleHandler}>
+          <OrderSummary
+            ingredients = {this.state.ingredients}
+            price = {this.state.toatalPrice}
+            purchaseCanclled = {this.purchaseCancleHandler}
+            purchaseContinued = {this.purchaseContinueHandler}/>
         </Modal>
         <Sandwitch ingredients={this.state.ingredients}/>
         <BuildControls
-          ingredientAdded={this.addIngreedientHandler}
-          ingredientRemoved={this.removeIngreedientHandler}
-          disabled={disabledInfo}
-          pruchaseable={this.state.pruchaseable}
-          orderd={this.purchaseHandler}
-          price={this.state.toatalPrice}/>
+          ingredientAdded = {this.addIngreedientHandler}
+          ingredientRemoved = {this.removeIngreedientHandler}
+          disabled = {disabledInfo}
+          pruchaseable = {this.state.pruchaseable}
+          orderd = {this.purchaseHandler}
+          price = {this.state.toatalPrice}/>
       </Aux>
     )
   }
