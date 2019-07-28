@@ -1,12 +1,8 @@
 .BuildControl {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    margin: 5px 0;
-    align-items: center;
-    font: inherit;
-    margin: auto;
-    padding: 10px 0;
+    margin: 10px 0;
 }
 
 .BuildControl button {
@@ -57,4 +53,13 @@
 .BuildControl .More:hover,.BuildControl .More:active {
     background-color: #99703F;
     color: white;
+}
+
+@media (min-width: 500px) {
+    .BuildControl {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 0;
+    }
 }

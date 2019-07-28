@@ -1,0 +1,16 @@
+.Controls {
+    display: flex;
+    flex-direction: column;
+    border: black solid 2px;
+    flex-basis: 100%;
+    margin: auto;
+}
+
+
+
+@media (min-width: 500px) {
+    .Controls{
+        flex-basis: 30%;
+        margin: auto 10px auto auto;
+    }
+}

@@ -7,16 +7,33 @@ class SandwitchIngredient extends Component
 {
     render(){
         let ingredient = null;
+        let breadClasses = [];
+        let seeds = [];
+
+        if(this.props.bread){
+            this.props.bread.forEach(element => {
+                if(element === 'multigrain'){
+                    breadClasses = [...breadClasses, classes.Multigrain]
+                }
+                if(element === 'seed'){
+                    //breadClasses = [...breadClasses, classes.Multigrain]
+                    seeds.push(<div className = {classes.Seeds1} key = {classes.Seeds1}></div>)
+                    seeds.push(<div className = {classes.Seeds2}  key ={classes.Seeds2}></div>)
+                }
+                else if(element ==='rollBread'){
+                    breadClasses = [...breadClasses, classes.Roll]
+                }
+            });
+        }
 
         switch(this.props.type){
             case ('bread-bottom'):
-                ingredient = <div className ={classes.BreadBottom} ></div>
+                ingredient = <div className = {[classes.BreadBottom, breadClasses.join(' ')].join(' ')}></div>
                 break;
             case ('bread-top'):
                     ingredient = (
-                        <div className = {classes.BreadTop}>
-                            <div className = {classes.Seeds1}></div>
-                            <div className = {classes.Seeds2}></div>
+                        <div className = {[classes.BreadTop, breadClasses.join(' ')].join(' ')}>
+                            {seeds}
                         </div>
                     );
                 break;
@@ -32,6 +49,15 @@ class SandwitchIngredient extends Component
             case('salad'):
                 ingredient = <div className = {classes.Salad}></div>;
                 break;
+            case('onion'):
+                ingredient = <div className = {classes.Onion}></div>;
+                break;
+            case('tomato'):
+                ingredient = <div className = {classes.Tomato}></div>;
+                break;
+            case('ham'):
+                ingredient = <div className = {classes.Ham}></div>;
+                break;
             default:
                 ingredient = null;
         }
@@ -39,9 +65,9 @@ class SandwitchIngredient extends Component
     };
 }
 
-SandwitchIngredient.propTypes = {
-    type: PropTypes.string.isRequired
-};
+// SandwitchIngredient.propTypes = {
+//     type: PropTypes.string.isRequired
+// };
 
 export default SandwitchIngredient;
 

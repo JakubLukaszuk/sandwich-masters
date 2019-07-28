@@ -1,21 +1,37 @@
 .BreadBottom {
-    height: 13%;
+    height: 13% !important;
     width: 80%;
     background: linear-gradient(#F08E4A, #e27b36);
-    border-radius: 0 0 30px 30px;
     box-shadow: inset -15px 0 #c15711;
     margin: 2% auto;
-}
+    border-radius: 2px !important;
+    border-top:  2px solid;
+    border-color: rgb(255, 198, 157);
+  }
 
 .BreadTop {
-    height: 20%;
+    height: 13%;
     width: 80%;
     background: linear-gradient(#bc581e, #e27b36);
-    border-radius: 50% 50% 0 0;
     box-shadow: inset -15px 0 #c15711;
     margin: 2% auto;
     position: relative;
+    border-bottom:  2px solid;
+    border-color: rgb(255, 198, 157);
 }
+
+.Multigrain {
+  background: linear-gradient( rgb(119, 45, 22) 7.8%, rgb(155, 61, 10) 87.9% );
+  box-shadow: inset -15px 0 #5a1c04;
+  border-color: rgb(133, 105, 90);
+
+}
+
+.Roll{
+  height: 20%;
+  border-radius: 50% 50% 0 0;
+}
+
 
 .Seeds1 {
     width: 10%;
@@ -49,9 +65,9 @@
     position: absolute;
     background-color: white;
     left: 180%;
-    top: -50%;
+    top: -30%;
     border-radius: 40%;
-    transform: rotate(60deg);
+    transform: rotate(10deg);
     box-shadow: inset -1px -3px #c9c9c9;
   }
 
@@ -99,10 +115,11 @@
 
 .Salad {
     width: 85%;
-    height: 7%;
+    height: 4%;
     margin: 2% auto;
     background: linear-gradient(#228c1d, #91ce50);
-    border-radius: 20px;
+    background: linear-gradient(#228c1d, #91ce50);
+    border-radius: 5px;
 }
 
 .Bacon {
@@ -111,3 +128,28 @@
     background: linear-gradient(#bf3813, #c45e38);
     margin: 2% auto;
 }
+
+.Onion {
+  width: 70%;
+  height: 4%;
+  background: linear-gradient(#afc7ae, #cee6b4);
+  border-radius: 2px;
+  margin: 2% auto;
+
+}
+
+.Tomato {
+  width: 72%;
+  height: 4.5%;
+  background: linear-gradient(#e92a2a, #f16464);
+  border-radius: 2px;
+  margin: 2% auto;
+}
+
+.Ham {
+  width: 82%;
+  height: 3.2%;
+  background: linear-gradient(#b95f7d,#f5759f);
+  margin: 2% auto;
+}
+

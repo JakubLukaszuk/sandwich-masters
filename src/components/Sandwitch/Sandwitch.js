@@ -3,6 +3,8 @@ import classes from './Sandwitch.css';
 import SandwitchIngredient from './SandwitchIngredient/SandwitchIngredient';
 
 const sandwitch = (props) => {
+    const breadFeatures = Object.keys(props.bread).filter(k => props.bread[k]);
+
     let ingreadientsPreperd  = Object.keys(props.ingredients)
     .map(igKey => {
         return [...Array(props.ingredients[igKey])].map((_, i) => {
@@ -17,9 +19,9 @@ const sandwitch = (props) => {
     }
     return(
         <div className={classes.Sandwitch}>
-            <SandwitchIngredient type='bread-top'/>
+            <SandwitchIngredient type='bread-top' bread = {breadFeatures}/>
             {ingreadientsPreperd}
-            <SandwitchIngredient type='bread-bottom'/>
+            <SandwitchIngredient type='bread-bottom' bread = {breadFeatures}/>
         </div>
     );
 }
