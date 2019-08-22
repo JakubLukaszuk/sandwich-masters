@@ -1,8 +1,11 @@
 import React from 'react';
+import{ withRouter } from 'react-router-dom';
+
 import classes from './Sandwitch.css';
 import SandwitchIngredient from './SandwitchIngredient/SandwitchIngredient';
 
 const sandwitch = (props) => {
+    console.log(props);
     const breadFeatures = Object.keys(props.bread).filter(k => props.bread[k]);
 
     let ingreadientsPreperd  = Object.keys(props.ingredients)
@@ -26,4 +29,4 @@ const sandwitch = (props) => {
     );
 }
 
-export default sandwitch;
+export default withRouter(sandwitch);

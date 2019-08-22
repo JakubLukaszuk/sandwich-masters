@@ -50,6 +50,7 @@ class SandwitchBuilder extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props);
     axiosOrders
       .get('/ingredients.json')
       .then(response => {
@@ -136,34 +137,49 @@ class SandwitchBuilder extends Component {
   }
 
   purchaseContinueHandler = () => {
-    this.setState({loading: true});
+    // this.setState({loading: true});
 
-    const order = {
-      ingredients: this.state.ingredients,
-      bread: this.state.bread,
-      price: this.state.toatalPrice,
-      //price should be calcualted on server
-      customer: {
-        name: 'Bartek Lub',
-        addres: {
-          street: 'TestStreet 1',
-          city: 'Warsaw',
-          postCode: '12-123'
-        },
-        email: 'test@wp.pl',
-        phoneNumber: 123123123
-      }
-      //alert('continue');
+    // const order = {
+    //   ingredients: this.state.ingredients,
+    //   bread: this.state.bread,
+    //   price: this.state.toatalPrice,
+    //   //price should be calcualted on server
+    //   customer: {
+    //     name: 'Bartek Lub',
+    //     addres: {
+    //       street: 'TestStreet 1',
+    //       city: 'Warsaw',
+    //       postCode: '12-123'
+    //     },
+    //     email: 'test@wp.pl',
+    //     phoneNumber: 123123123
+    //   }
+    //   //alert('continue');
+    // }
+    // axiosOrders
+    //   .post('/orders.json', order)
+    //   .then(response => {
+    //     this.setState({loading: false, purchasing: false})
+    //   })
+    //   .catch(error => {
+    //     console.log(error)
+    //     this.setState({loading: false, purchasing: false})
+    //   });
+    const query = [];
+
+    for (let i in this.state.bread){
+      query.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.bread[i]))
     }
-    axiosOrders
-      .post('/orders.json', order)
-      .then(response => {
-        this.setState({loading: false, purchasing: false})
-      })
-      .catch(error => {
-        console.log(error)
-        this.setState({loading: false, purchasing: false})
-      });
+
+    for (let i in this.state.ingredients){
+      query.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
+    }
+    query.push('price=' + this.state.toatalPrice);
+    const queryString = query.join('&');
+    this.props.history.push({
+      pathname: '/checkout',
+      search: '?' + queryString,
+    });
   }
 
   render() {
