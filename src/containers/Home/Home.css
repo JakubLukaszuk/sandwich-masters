@@ -1,0 +1,75 @@
+.Home{
+    display: flex;
+    flex-direction: column;
+    height: 200vh;
+    width: 100%;
+    background-color: white;
+    overflow: hidden;
+}
+
+.ImageSection{
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    color: whitesmoke;
+    font-family: 'Muli', sans-serif;
+    font-weight: bold;
+}
+
+.ImageSection h1 {
+    font-size: 60px;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+}
+
+.BackGroundImage{
+    width: auto;
+    transform: scale(1.2);
+    transform: translateX(-15%);
+    height: 100%;
+}
+
+
+.CreateOwnSection{
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 50vh;
+    width: 100%;
+    padding-top: 40px;
+    padding-left: 10px;
+}
+
+.CreateOwnSection section{
+    display: row;
+}
+
+.CreateOwnSection h3{
+    font-size: 25px;
+}
+
+.CreateOwnSection p{
+    font-size: 18px;
+}
+
+
+.HamburgerSandwitchImage{
+    height: 50%;
+    width: auto;
+}
+
+
+@media (min-width: 600px) {
+    .BackGroundImage{
+        width: 100%;
+        height: auto;
+        transform: scale(1);
+        transform: translateX(0%);
+    }
+    .ImageSection{
+        left: -3px;
+    }
+}
