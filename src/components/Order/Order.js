@@ -25,8 +25,6 @@ const order = (props) => {
         );
     }
 
-    console.log(bread);
-
     const ingradientOutput = ingredients.map(ingradient => {
         return <span
             key = {ingradient.name}>

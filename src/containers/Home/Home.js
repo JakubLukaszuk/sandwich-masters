@@ -18,7 +18,6 @@ const home = () => {
       <div className={classes.CreateOwnSection}>
           <h3>Create your own sandwitch or burger!</h3>
           <section>
-
           <img
             className={classes.HamburgerSandwitchImage}
             src={burgerSandwitchIng}
