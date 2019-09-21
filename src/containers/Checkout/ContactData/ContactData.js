@@ -90,6 +90,7 @@ class ContactData extends Component {
         toutched: false
       }
     },
+    isFormValid: false,
     loading: false,
   }
 
@@ -150,7 +151,11 @@ class ContactData extends Component {
     updatedFormElement.toutched = true;
     updatedOrderForm[inputId] = updatedFormElement;
 
-    this.setState({orderForm: updatedOrderForm});
+    let isFormValid= true;
+    for(let inputID in updatedOrderForm){
+      isFormValid = updatedOrderForm[inputID].valid && isFormValid;
+    }
+    this.setState({orderForm: updatedOrderForm, isFormValid: isFormValid});
   }
 
   render() {
@@ -173,7 +178,7 @@ class ContactData extends Component {
           toutched = {formElement.config.toutched}
           changed = {(event) => this.inputChangedhandler(event, formElement.id)} />
       ))}
-      <Button btnType='Success'>ORDER</Button>
+      <Button btnType='Success' disabled = {!this.state.isFormValid}>ORDER</Button>
     </form>);
     if(this.state.loading) {
        form = <Spinner/>;
