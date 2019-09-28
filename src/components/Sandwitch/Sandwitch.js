@@ -5,13 +5,13 @@ import classes from './Sandwitch.css';
 import SandwitchIngredient from './SandwitchIngredient/SandwitchIngredient';
 
 const sandwitch = (props) => {
-    console.log(props);
+
     const breadFeatures = Object.keys(props.bread).filter(k => props.bread[k]);
 
     let ingreadientsPreperd  = Object.keys(props.ingredients)
     .map(igKey => {
         return [...Array(props.ingredients[igKey])].map((_, i) => {
-           return <SandwitchIngredient key = {igKey + i} type = {igKey} />
+           return <SandwitchIngredient key = {igKey + i} type = {igKey} />;
         });
     })
     .reduce((perv, recent)=>{
