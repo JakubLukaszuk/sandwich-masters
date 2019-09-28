@@ -1,20 +1,22 @@
 import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
 import ContactData from './ContactData/ContactData';
 import { log, isBoolean } from 'util';
+import { stat } from 'fs';
 
 class Checkout extends Component {
-  state = {
-    bread: {
-      seed: false,
-      rollBread: false,
-      multigrain: false
-    },
-    ingredients: null,
-    price: 0
-  }
+  // state = {
+  //   bread: {
+  //     seed: false,
+  //     rollBread: false,
+  //     multigrain: false
+  //   },
+  //   ingredients: null,
+  //   price: 0
+  // }
 
   checkBoolean(value){
     switch(value){
@@ -29,23 +31,23 @@ class Checkout extends Component {
      }
   }
 
-  componentWillMount() {
-    const query = new URLSearchParams(this.props.location.search);
-    const ingredients = {};
-    const bread = {};
-    let price = 0;
-    for (let param of query.entries()) {
-      if (this.checkBoolean(param[1]) === true)
-          bread[param[0]] =+ JSON.parse(param[1]);
-        else
-          if (param[0] === 'price')
-            price = param[1];
-          else
-            ingredients[param[0]] =+ param[1];
+  // componentWillMount() {
+  //   const query = new URLSearchParams(this.props.location.search);
+  //   const ingredients = {};
+  //   const bread = {};
+  //   let price = 0;
+  //   for (let param of query.entries()) {
+  //     if (this.checkBoolean(param[1]) === true)
+  //         bread[param[0]] =+ JSON.parse(param[1]);
+  //       else
+  //         if (param[0] === 'price')
+  //           price = param[1];
+  //         else
+  //           ingredients[param[0]] =+ param[1];
 
-    this.setState({ingredients: ingredients, bread: bread, totalPrice: price});
-  }
-}
+  //   this.setState({ingredients: ingredients, bread: bread, totalPrice: price});
+  // }
+//}
   checkoutCancelledHandler = () => {
     this
       .props
@@ -64,17 +66,23 @@ class Checkout extends Component {
     return (
       <div>
         <CheckoutSummary
-          ingredients={this.state.ingredients}
-          bread={this.state.bread}
+          ingredients={this.props.ingredients}
+          bread={this.props.bread}
           checkoutCancelled={this.checkoutCancelledHandler}
           checkoutContinued={this.checkoutContinuedHandler}/>
         <Route
           path={this.props.match.path + '/contact-data'}
-          render=
-          {(props) => (<ContactData ingredients = {this.state.ingredients} bread = {this.state.bread} price = {this.state.totalPrice} {...props} />)}/>
+          component = {ContactData}/>)}/>
       </div>
     );
   }
 }
 
-export default Checkout;
+const mapStateToProps = state => {
+  return{
+    ingredients: state.ingredients,
+    bread: state.bread,
+  }
+}
+
+export default connect(mapStateToProps)(Checkout);

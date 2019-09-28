@@ -44,24 +44,26 @@ class SandwitchBuilder extends Component {
   }
 
   purchaseContinueHandler = () => {
-    const query = [];
+    this.props.history.push('/checkout');
+    // const query = [];
 
-    for (let i in this.state.bread) {
-      query.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.bread[i]))
-    }
+    // for (let i in this.state.bread) {
+    //   query.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.bread[i]))
+    // }
 
-    for (let i in this.state.ingredients) {
-      query.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
-    }
-    query.push('price=' + this.state.toatalPrice);
-    const queryString = query.join('&');
-    this
-      .props
-      .history
-      .push({
-        pathname: '/checkout',
-        search: '?' + queryString
-      });
+    // for (let i in this.state.ingredients) {
+    //   query.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
+    // }
+    // query.push('price=' + this.state.toatalPrice);
+    // const queryString = query.join('&');
+    // this
+    //   .props
+    //   .history
+    //   .push({
+    //     pathname: '/checkout',
+    //     search: '?' + queryString
+    //   });
+
   }
 
   render() {
