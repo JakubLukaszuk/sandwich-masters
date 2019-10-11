@@ -9,16 +9,20 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import OrderMenu from '../../components/OrderMenu/OrderMenu'
 import axiosOrders from '../../axios-orders';
-import * as actionTypes from '../../store/actions';
-
+import * as actionTypes from '../../store/actions/actionsTypes';
+import * as actions from '../../store/actions/index';
 
 
 class SandwitchBuilder extends Component {
 
   state = {
     purchasing: false,
-    loading: false,
-    error: false
+    // loading: false,
+    // error: false
+  }
+
+  componentDidMount() {
+    this.props.onInitIngreadients();
   }
 
 
@@ -77,7 +81,7 @@ class SandwitchBuilder extends Component {
 
     let orderSummary;
 
-    let sandwitch = this.state.error
+    let sandwitch = this.props.error
       ? <p>Ingreadiens can't be loaded</p>
       : <Spinner/>
 
@@ -101,9 +105,7 @@ class SandwitchBuilder extends Component {
         purchaseContinued={this.purchaseContinueHandler}/>
     }
 
-    if (this.state.loading) {
-      orderSummary = <Spinner/>
-    }
+
 
     return (
       <Aux>
@@ -120,15 +122,17 @@ const mapStateToProps = state => {
   return {
     ingredients: state.ingredients,
     bread: state.bread,
-    sandwitchPrice: state.totalPrice
+    sandwitchPrice: state.totalPrice,
+    error: state.error
     };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onIngreadientAdded: (ingreadientName) => dispatch({type: actionTypes.ADD_INGREADEINT, ingreadientName: ingreadientName}),
-    onIngreadientRemoved: (ingreadientName) => dispatch({type: actionTypes.REMOVE_INGREADEINT, ingreadientName: ingreadientName}),
-    onBreadPropertyChanged: (breadPropertyName) => dispatch({type: actionTypes.CHANGE_BREAD_PROPETY, breadProperty: breadPropertyName})
+    onIngreadientAdded: (ingreadientName) => dispatch(actions.addIngreadient(ingreadientName)),
+    onIngreadientRemoved: (ingreadientName) => dispatch(actions.removeIngreadient(ingreadientName)),
+    onBreadPropertyChanged: (breadPropertyName) => dispatch({type: actionTypes.CHANGE_BREAD_PROPETY, breadProperty: breadPropertyName}),
+    onInitIngreadients: () => dispatch(actions.initIngreadients())
   };
 }
 
