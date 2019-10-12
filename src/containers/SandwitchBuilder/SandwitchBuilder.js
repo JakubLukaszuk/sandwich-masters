@@ -131,7 +131,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onIngreadientAdded: (ingreadientName) => dispatch(actions.addIngreadient(ingreadientName)),
     onIngreadientRemoved: (ingreadientName) => dispatch(actions.removeIngreadient(ingreadientName)),
-    onBreadPropertyChanged: (breadPropertyName) => dispatch({type: actionTypes.CHANGE_BREAD_PROPETY, breadProperty: breadPropertyName}),
+    onBreadPropertyChanged: (breadPropertyName) => dispatch(actions.changeBreadProperty(breadPropertyName)),
     onInitIngreadients: () => dispatch(actions.initIngreadients())
   };
 }

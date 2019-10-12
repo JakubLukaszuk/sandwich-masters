@@ -15,6 +15,13 @@ export const removeIngreadient = (ingreadientName) => {
     }
 }
 
+export const changeBreadProperty = (breadProperty) => {
+    return{
+        type: actionTypes.CHANGE_BREAD_PROPETY,
+        breadProperty: breadProperty
+    }
+}
+
 export const setIngreadients = (ingredients) => {
     return {
         type: actionTypes.SET_INGREADEINTS,
