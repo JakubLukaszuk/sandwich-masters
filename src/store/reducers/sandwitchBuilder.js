@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionsTypes';
+import {updateObject} from '../utility';
 
 const INGREDIENT_PRICES = {
   salad: 0.2,
@@ -14,11 +15,7 @@ const INGREDIENT_PRICES = {
 }
 
 const initialState = {
-  bread: {
-    seed: false,
-    rollBread: false,
-    multigrain: false
-  },
+  bread: null,
   ingredients: null,
   totalPrice: 4,
   error: false
@@ -45,7 +42,9 @@ const reducer = (state = initialState, action) => {
         totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingreadientName]
       }
     case actionTypes.CHANGE_BREAD_PROPETY:
-      const price = !state.bread[action.breadProperty] ? INGREDIENT_PRICES[action.breadProperty] : -INGREDIENT_PRICES[action.breadProperty];
+      const price = !state.bread[action.breadProperty]
+        ? INGREDIENT_PRICES[action.breadProperty]
+        : -INGREDIENT_PRICES[action.breadProperty];
       return {
         ...state,
         bread: {
@@ -54,16 +53,23 @@ const reducer = (state = initialState, action) => {
         },
         totalPrice: state.totalPrice + price
       }
-      case actionTypes.SET_INGREADEINTS:
-        return{
-          ...state,
-          ingredients: action.ingredients
-        }
-      case actionTypes.FETCH_INGREADIENTS_FAILED:
-        return {
-          ...state,
-          error: true
-        }
+    case actionTypes.SET_INGREADEINTS:
+      return {
+        ...state,
+        ingredients: action.ingredients,
+        totalPrice: 4,
+        error: false
+      }
+    case actionTypes.SET_BREAD:
+      return {
+        ...state,
+        bread: action.bread
+      }
+    case actionTypes.FETCH_INGREADIENTS_FAILED:
+      return {
+        ...state,
+        error: true
+      }
     default:
       return state;
   }

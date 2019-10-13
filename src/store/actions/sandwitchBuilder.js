@@ -29,6 +29,13 @@ export const setIngreadients = (ingredients) => {
     };
 }
 
+export const setBread = (bread) => {
+    return {
+        type: actionTypes.SET_BREAD,
+        bread: bread
+    };
+}
+
 export const fetchIngredientsFalied = () => {
     return{
         type: actionTypes.FETCH_INGREADIENTS_FAILED
@@ -39,7 +46,6 @@ export const initIngreadients = () => {
     return dispatch =>{
         axiosOrders.get('/ingredients.json').then(
             response => {
-                console.log(response.data);
               dispatch(setIngreadients(response.data));
             })
             .catch(error => {
@@ -47,3 +53,16 @@ export const initIngreadients = () => {
             })
     }
 }
+
+export const initBread = () => {
+    return dispatch =>{
+        axiosOrders.get('/bread.json').then(
+            response => {
+              dispatch(setBread(response.data));
+            })
+            .catch(error => {
+              dispatch(fetchIngredientsFalied());
+            })
+    }
+}
+

@@ -9,7 +9,6 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import OrderMenu from '../../components/OrderMenu/OrderMenu'
 import axiosOrders from '../../axios-orders';
-import * as actionTypes from '../../store/actions/actionsTypes';
 import * as actions from '../../store/actions/index';
 
 
@@ -23,6 +22,7 @@ class SandwitchBuilder extends Component {
 
   componentDidMount() {
     this.props.onInitIngreadients();
+    this.props.onInitBread();
   }
 
 
@@ -48,6 +48,7 @@ class SandwitchBuilder extends Component {
   }
 
   purchaseContinueHandler = () => {
+    this.props.onInitPurchase();
     this.props.history.push('/checkout');
     // const query = [];
 
@@ -120,10 +121,10 @@ class SandwitchBuilder extends Component {
 
 const mapStateToProps = state => {
   return {
-    ingredients: state.ingredients,
-    bread: state.bread,
-    sandwitchPrice: state.totalPrice,
-    error: state.error
+    ingredients: state.sandwitchBuilderReducer.ingredients,
+    bread: state.sandwitchBuilderReducer.bread,
+    sandwitchPrice: state.sandwitchBuilderReducer.totalPrice,
+    error: state.sandwitchBuilderReducer.error
     };
 }
 
@@ -132,7 +133,9 @@ const mapDispatchToProps = dispatch => {
     onIngreadientAdded: (ingreadientName) => dispatch(actions.addIngreadient(ingreadientName)),
     onIngreadientRemoved: (ingreadientName) => dispatch(actions.removeIngreadient(ingreadientName)),
     onBreadPropertyChanged: (breadPropertyName) => dispatch(actions.changeBreadProperty(breadPropertyName)),
-    onInitIngreadients: () => dispatch(actions.initIngreadients())
+    onInitIngreadients: () => dispatch(actions.initIngreadients()),
+    onInitBread: () => dispatch(actions.initBread()),
+    onInitPurchase: () => dispatch(actions.purchaseInit())
   };
 }
 
