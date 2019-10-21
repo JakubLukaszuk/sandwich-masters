@@ -1,4 +1,10 @@
-export {addIngreadient, removeIngreadient, initIngreadients}
+export {
+  addIngreadient,
+  removeIngreadient,
+  initIngreadients,
+  initBread,
+  changeBreadProperty
+}
 from './sandwitchBuilder';
-export {}
+export {purchaseSandwitch, purchaseInit, fetchOrders}
 from './order';

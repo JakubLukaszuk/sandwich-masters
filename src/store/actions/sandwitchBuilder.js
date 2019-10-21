@@ -15,10 +15,24 @@ export const removeIngreadient = (ingreadientName) => {
     }
 }
 
+export const changeBreadProperty = (breadProperty) => {
+    return{
+        type: actionTypes.CHANGE_BREAD_PROPETY,
+        breadProperty: breadProperty
+    }
+}
+
 export const setIngreadients = (ingredients) => {
     return {
         type: actionTypes.SET_INGREADEINTS,
         ingredients: ingredients
+    };
+}
+
+export const setBread = (bread) => {
+    return {
+        type: actionTypes.SET_BREAD,
+        bread: bread
     };
 }
 
@@ -32,7 +46,6 @@ export const initIngreadients = () => {
     return dispatch =>{
         axiosOrders.get('/ingredients.json').then(
             response => {
-                console.log(response.data);
               dispatch(setIngreadients(response.data));
             })
             .catch(error => {
@@ -40,3 +53,16 @@ export const initIngreadients = () => {
             })
     }
 }
+
+export const initBread = () => {
+    return dispatch =>{
+        axiosOrders.get('/bread.json').then(
+            response => {
+              dispatch(setBread(response.data));
+            })
+            .catch(error => {
+              dispatch(fetchIngredientsFalied());
+            })
+    }
+}
+
