@@ -8,3 +8,6 @@ export {
 from './sandwitchBuilder';
 export {purchaseSandwitch, purchaseInit, fetchOrders}
 from './order';
+export {
+  auth
+} from './authentication';

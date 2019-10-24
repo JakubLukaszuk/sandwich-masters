@@ -10,13 +10,14 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import sandwitchBuilderReducer from './store/reducers/sandwitchBuilder';
 import orderRecuder from './store/reducers/order'
-
+import authenticationReducer from './store/reducers/authentication';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   sandwitchBuilderReducer: sandwitchBuilderReducer,
-  orderRecuder: orderRecuder
+  orderRecuder: orderRecuder,
+  authenticationReducer: authenticationReducer
 })
 
 const store = createStore(rootReducer, composeEnhancers(

@@ -124,7 +124,7 @@ class ContactData extends Component {
       //price should be calcualted on server
       //alert('continue');
     }
-    this.props.onOrderSandwitch(order);
+    this.props.onOrderSandwitch(order, this.props.token);
   }
 
   inputChangedhandler = (event, inputId) => {
@@ -185,13 +185,14 @@ const mapStateToProps = state => {
     ingredients: state.sandwitchBuilderReducer.ingredients,
     bread: state.sandwitchBuilderReducer.bread,
     totalPrice: state.sandwitchBuilderReducer.totalPrice,
-    loading: state.orderRecuder.loading
+    loading: state.orderRecuder.loading,
+    token: state.authenticationReducer.idToken
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return{
-    onOrderSandwitch: (order) => dispatch(actions.purchaseSandwitch(order))
+    onOrderSandwitch: (order, token) => dispatch(actions.purchaseSandwitch(order, token))
   }
 };
 
