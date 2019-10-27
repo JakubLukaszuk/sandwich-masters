@@ -1,13 +1,6 @@
-export {
-  addIngreadient,
-  removeIngreadient,
-  initIngreadients,
-  initBread,
-  changeBreadProperty
-}
+export {addIngreadient, removeIngreadient, initIngreadients, initBread, changeBreadProperty}
 from './sandwitchBuilder';
 export {purchaseSandwitch, purchaseInit, fetchOrders}
 from './order';
-export {
-  auth
-} from './authentication';
+export {auth, logout, setAuthRedirectPath, authCheckState}
+from './authentication';

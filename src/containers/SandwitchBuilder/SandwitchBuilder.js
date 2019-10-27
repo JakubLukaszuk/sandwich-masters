@@ -27,7 +27,12 @@ class SandwitchBuilder extends Component {
 
 
   purchaseHandler = () => {
-    this.setState({purchasing: true})
+    if(this.props.isAuthenticated){
+      this.setState({purchasing: true})
+    }else{
+      this.props.onSetAuthRedirectPath('/checkout');
+      this.props.history.push('/authentication');
+    }
   }
 
   updatePurchaseState(ingredients) {
@@ -50,25 +55,6 @@ class SandwitchBuilder extends Component {
   purchaseContinueHandler = () => {
     this.props.onInitPurchase();
     this.props.history.push('/checkout');
-    // const query = [];
-
-    // for (let i in this.state.bread) {
-    //   query.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.bread[i]))
-    // }
-
-    // for (let i in this.state.ingredients) {
-    //   query.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
-    // }
-    // query.push('price=' + this.state.toatalPrice);
-    // const queryString = query.join('&');
-    // this
-    //   .props
-    //   .history
-    //   .push({
-    //     pathname: '/checkout',
-    //     search: '?' + queryString
-    //   });
-
   }
 
   render() {
@@ -96,6 +82,7 @@ class SandwitchBuilder extends Component {
           pruchaseable={this.updatePurchaseState(this.props.ingredients)}
           orderd={this.purchaseHandler}
           price={this.props.sandwitchPrice}
+          isAuthenticated = {this.props.isAuthenticated}
           changedBread={this.props.onBreadPropertyChanged}
           checkedBread={this.props.bread}/>
       </Aux>
@@ -124,7 +111,8 @@ const mapStateToProps = state => {
     ingredients: state.sandwitchBuilderReducer.ingredients,
     bread: state.sandwitchBuilderReducer.bread,
     sandwitchPrice: state.sandwitchBuilderReducer.totalPrice,
-    error: state.sandwitchBuilderReducer.error
+    error: state.sandwitchBuilderReducer.error,
+    isAuthenticated: state.authenticationReducer.idToken !== null
     };
 }
 
@@ -135,7 +123,8 @@ const mapDispatchToProps = dispatch => {
     onBreadPropertyChanged: (breadPropertyName) => dispatch(actions.changeBreadProperty(breadPropertyName)),
     onInitIngreadients: () => dispatch(actions.initIngreadients()),
     onInitBread: () => dispatch(actions.initBread()),
-    onInitPurchase: () => dispatch(actions.purchaseInit())
+    onInitPurchase: () => dispatch(actions.purchaseInit()),
+    onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path))
   };
 }
 

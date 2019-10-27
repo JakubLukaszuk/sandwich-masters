@@ -17,7 +17,8 @@ const initialState = {
   bread: null,
   ingredients: null,
   totalPrice: 4,
-  error: false
+  error: false,
+  buildingSandwitch: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -29,7 +30,8 @@ const reducer = (state = initialState, action) => {
           ...state.ingredients,
           [action.ingreadientName]: state.ingredients[action.ingreadientName] + 1
         },
-        totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingreadientName]
+        totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingreadientName],
+        buildingSandwitch: true
       }
     case actionTypes.REMOVE_INGREADEINT:
       return {
@@ -38,7 +40,8 @@ const reducer = (state = initialState, action) => {
           ...state.ingredients,
           [action.ingreadientName]: state.ingredients[action.ingreadientName] - 1
         },
-        totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingreadientName]
+        totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingreadientName],
+        buildingSandwitch: true
       }
     case actionTypes.CHANGE_BREAD_PROPETY:
       const price = !state.bread[action.breadProperty]
@@ -57,7 +60,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         ingredients: action.ingredients,
         totalPrice: 4,
-        error: false
+        error: false,
+        buildingSandwitch: false
       }
     case actionTypes.SET_BREAD:
       return {
