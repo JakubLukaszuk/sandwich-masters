@@ -22,11 +22,11 @@ export const purchaseSandwitchStart = () => {
     }
 }
 
-export const purchaseSandwitch = (order) => {
+export const purchaseSandwitch = (order, token) => {
     return dispatch => {
         dispatch(purchaseSandwitchStart());
         axiosOrders
-        .post('/orders.json', order)
+        .post('/orders.json?auth='+token, order)
         .then(response => {
             dispatch(purchaseSandwitchSuccess(response.data, order));
         //   this.setState({loading: false});
@@ -64,9 +64,11 @@ export const fetchOrdersStart = () =>{
     }
 }
 
-export const fetchOrders = (token) =>{
+export const fetchOrders = (token, userId) =>{
     return dispatch => {
-        axiosOrders.get('/orders.json?auth=' + token)
+        dispatch(fetchOrdersStart());
+        const queryParams = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`;        
+        axiosOrders.get('/orders.json' + queryParams)
         .then(response => {
             const fetchedOrders = [];
             for(let key in response.data){

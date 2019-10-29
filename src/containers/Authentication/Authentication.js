@@ -29,7 +29,7 @@ class Authentication extends Component{
               password:{
                 elementType: 'input',
                 elemetConfig:{
-                  type: 'emial',
+                  type: 'password',
                   placeholder: 'password'
                 },
                 value:'',

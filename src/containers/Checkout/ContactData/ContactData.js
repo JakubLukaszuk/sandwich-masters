@@ -120,7 +120,8 @@ class ContactData extends Component {
       ingredients: this.props.ingredients,
       bread: this.props.bread,
       price: this.props.totalPrice,
-      orderData: formData
+      orderData: formData,
+      userId: this.props.userId
       //price should be calcualted on server
       //alert('continue');
     }
@@ -186,7 +187,8 @@ const mapStateToProps = state => {
     bread: state.sandwitchBuilderReducer.bread,
     totalPrice: state.sandwitchBuilderReducer.totalPrice,
     loading: state.orderRecuder.loading,
-    token: state.authenticationReducer.idToken
+    token: state.authenticationReducer.idToken,
+    userId: state.authenticationReducer.userId
   }
 }
 
