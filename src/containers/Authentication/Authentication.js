@@ -7,7 +7,7 @@ import Button from '../../components/UI/Button/Button';
 import classes from './Authentication.css';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
-
+import {checkValidity} from '../../shared/validation';
 
 class Authentication extends Component{
     state ={
@@ -51,24 +51,13 @@ class Authentication extends Component{
           }
         }
 
-    isValid(value, rules){
-        let validity = true;
-        if(rules.required){
-          validity = value.trim() !=='' && validity;
-        }
-        if(rules.minLength){
-          validity = value.length >= rules.minLength;
-        }
-        return validity;
-      }
-
       inputChangedhandler = (event, controlName)=>{
         const updatedControls = {
             ...this.state.constols,
             [controlName]: {
                 ...this.state.constols[controlName],
                 value: event.target.value,
-                valid: this.isValid(event.target.value, this.state.constols[controlName].validation),
+                valid: checkValidity(event.target.value, this.state.constols[controlName].validation),
                 toutched: true
             }
           }

@@ -8,6 +8,7 @@ import axiosOrders from '../../../axios-orders';
 import Input from '../../../components/UI/Input/Input';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../../store/actions/index';
+import {checkValidity} from '../../../shared/validation';
 
 class ContactData extends Component {
   state = {
@@ -95,20 +96,6 @@ class ContactData extends Component {
     isFormValid: false
   }
 
-  isValid(value, rules){
-    let validity = true;
-
-    if(rules.required){
-      validity = value.trim() !=='' && validity;
-    }
-
-    if(rules.minLength){
-      validity = value.length >= rules.minLength;
-    }
-    return validity;
-  }
-
-
   orderHandler = (event) => {
     event.preventDefault();
     const formData = {};
@@ -136,7 +123,7 @@ class ContactData extends Component {
       ...updatedOrderForm[inputId]
     };
     updatedFormElement.value = event.target.value;
-    updatedFormElement.valid = this.isValid(updatedFormElement.value, updatedFormElement.validation);
+    updatedFormElement.valid = checkValidity(updatedFormElement.value, updatedFormElement.validation);
     updatedFormElement.toutched = true;
     updatedOrderForm[inputId] = updatedFormElement;
 

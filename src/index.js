@@ -12,7 +12,7 @@ import sandwitchBuilderReducer from './store/reducers/sandwitchBuilder';
 import orderRecuder from './store/reducers/order'
 import authenticationReducer from './store/reducers/authentication';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null|| compose;
 
 const rootReducer = combineReducers({
   sandwitchBuilderReducer: sandwitchBuilderReducer,
@@ -24,7 +24,6 @@ const store = createStore(rootReducer, composeEnhancers(
   applyMiddleware(thunk)
 ));
 
-console.log(store);
 
 const app = (
   <Provider store = {store}>
