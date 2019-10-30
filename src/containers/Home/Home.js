@@ -1,16 +1,20 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
 import classes from './Home.css';
 import backGround from '../../assets/images/homeBG.png';
 import burgerSandwitchIng from '../../assets/images/sandwitchBurger.PNG';
 import ButtonMore from '../../components/UI/Button/ButtonMore/ButtonMore';
-
-const home = () => {
+import Modal from '../../components/UI/Modal/Modal';
+const home = (props) => {
 
     const buttonCLickHandler = () =>{
     }
 
   return (
+
     <div className={classes.Home}>
+    {props.orderData ? <Modal show = {true}>{props.orderData.postCode}</Modal>: null}
       <div className={classes.ImageSection}>
         <img className={classes.BackGroundImage} src={backGround} alt='BackGround'></img>
         <h1>Sandwitch Masters</h1>
@@ -33,4 +37,10 @@ const home = () => {
   );
 }
 
-export default home;
+const mapStateToProps = state => {
+  return{
+    orderData: state.orderRecuder.orderData,
+  }
+}
+
+export default connect(mapStateToProps)(home);

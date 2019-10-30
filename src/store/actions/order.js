@@ -9,10 +9,9 @@ export const purchaseSandwitchSuccess = (id, order) =>{
     }
 }
 
-export const purchaseSandwitchFail = (error) => {
+export const purchaseSandwitchFail = () => {
     return{
         type: actionTypes.PURCHASE_SANDWITCH_FAIL,
-        error: error
     }
 }
 
@@ -33,7 +32,7 @@ export const purchaseSandwitch = (order, token) => {
         //   this.props.history.push('/');
         })
         .catch(error => {
-          dispatch(purchaseSandwitchFail(error))
+          dispatch(purchaseSandwitchFail())
         });
     };
 }
@@ -51,10 +50,9 @@ export const fetchOrdersSucces = (orders) => {
     }
 }
 
-export const fetchOrdersFail = (error) =>{
+export const fetchOrdersFail = () =>{
     return{
         type: actionTypes.FETCH_ORDERS_FAIL,
-        error: error
     }
 }
 
@@ -80,7 +78,7 @@ export const fetchOrders = (token, userId) =>{
             dispatch(fetchOrdersSucces(fetchedOrders))
         })
         .catch(error =>{
-            dispatch(fetchOrdersFail(error));
+            dispatch(fetchOrdersFail());
         });
     }
 }

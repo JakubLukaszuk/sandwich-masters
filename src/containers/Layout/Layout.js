@@ -20,6 +20,7 @@ class Layout extends Component {
   }
 
   render() {
+    console.log(this.props.orderData);
     return (
       <Aux>
         <Toolbar
@@ -40,7 +41,8 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.authenticationReducer.idToken !== null
+    isAuthenticated: state.authenticationReducer.idToken !== null,
+    orderData: state.orderRecuder.orderData,
   }
 }
 export default connect(mapStateToProps)(Layout);

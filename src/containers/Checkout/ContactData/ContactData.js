@@ -108,9 +108,7 @@ class ContactData extends Component {
       bread: this.props.bread,
       price: this.props.totalPrice,
       orderData: formData,
-      userId: this.props.userId
-      //price should be calcualted on server
-      //alert('continue');
+      userId: this.props.userId,
     }
     this.props.onOrderSandwitch(order, this.props.token);
   }
@@ -163,6 +161,7 @@ class ContactData extends Component {
       <div className = {classes.ContactData}>
         <h4>Enter your Contact Data</h4>
         {form}
+        {this.props.error ? <p>{this.props.error}</p> : null}
       </div>
     )
   }
@@ -175,7 +174,8 @@ const mapStateToProps = state => {
     totalPrice: state.sandwitchBuilderReducer.totalPrice,
     loading: state.orderRecuder.loading,
     token: state.authenticationReducer.idToken,
-    userId: state.authenticationReducer.userId
+    userId: state.authenticationReducer.userId,
+    error: state.orderRecuder.error
   }
 }
 
