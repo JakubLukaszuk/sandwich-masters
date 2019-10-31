@@ -10,6 +10,7 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import OrderMenu from '../../components/OrderMenu/OrderMenu'
 import axiosOrders from '../../axios-orders';
 import * as actions from '../../store/actions/index';
+import { throwStatement } from '@babel/types';
 
 
 class SandwitchBuilder extends Component {
@@ -23,6 +24,7 @@ class SandwitchBuilder extends Component {
   componentDidMount() {
     this.props.onInitIngreadients();
     this.props.onInitBread();
+    this.props.orderDataCleanUp();
   }
 
 
@@ -124,7 +126,8 @@ const mapDispatchToProps = dispatch => {
     onInitIngreadients: () => dispatch(actions.initIngreadients()),
     onInitBread: () => dispatch(actions.initBread()),
     onInitPurchase: () => dispatch(actions.purchaseInit()),
-    onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path))
+    onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path)),
+    orderDataCleanUp: () => dispatch(actions.orderDataCleanUp())
   };
 }
 

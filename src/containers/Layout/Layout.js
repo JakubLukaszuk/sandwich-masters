@@ -20,7 +20,6 @@ class Layout extends Component {
   }
 
   render() {
-    console.log(this.props.orderData);
     return (
       <Aux>
         <Toolbar

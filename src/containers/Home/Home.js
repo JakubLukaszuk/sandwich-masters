@@ -5,16 +5,21 @@ import classes from './Home.css';
 import backGround from '../../assets/images/homeBG.png';
 import burgerSandwitchIng from '../../assets/images/sandwitchBurger.PNG';
 import ButtonMore from '../../components/UI/Button/ButtonMore/ButtonMore';
-import Modal from '../../components/UI/Modal/Modal';
+import MessageBox from '../../components/UI/MessageBox/MessageBox';
+import * as actions from '../../store/actions/index';
 const home = (props) => {
 
     const buttonCLickHandler = () =>{
+      props.orderingEnds();
     }
 
   return (
-
     <div className={classes.Home}>
-    {props.orderData ? <Modal show = {true}>{props.orderData.postCode}</Modal>: null}
+    {props.orderData ? <MessageBox show = {!!props.orderData} onClose ={props.onOrderEnds} title ='Order'>
+    Delivery to: {props.orderData.name}<br/>
+    adress: {props.orderData.street} {props.orderData.postCode} {props.orderData.street}
+     </MessageBox> : null
+    }
       <div className={classes.ImageSection}>
         <img className={classes.BackGroundImage} src={backGround} alt='BackGround'></img>
         <h1>Sandwitch Masters</h1>
@@ -43,4 +48,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(home);
+const mapDispatchToProps = dispatch => {
+  return{
+    onOrderEnds: () => dispatch(actions.orderDataCleanUp())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(home);

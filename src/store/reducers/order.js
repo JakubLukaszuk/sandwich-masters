@@ -36,6 +36,11 @@ const reducer = (state = initialState, action) => {
                 orderData: {...action.order.orderData,
                 email: null}
             };
+        case actionTypes.ORDER_DATA_CLEAN_UP:
+            return{
+                ...state,
+                orderData: null
+            }
         case actionTypes.PURCHASE_SANDWITCH_FAIL:
             return{
                 ...state,

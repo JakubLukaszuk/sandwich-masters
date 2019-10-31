@@ -37,6 +37,12 @@ export const purchaseSandwitch = (order, token) => {
     };
 }
 
+export const orderDataCleanUp = () =>{
+    return{
+        type: actionTypes.ORDER_DATA_CLEAN_UP
+    }
+}
+
 export const purchaseInit = () => {
     return{
         type: actionTypes.PURCHASE_INIT
