@@ -1,25 +1,31 @@
 .NavigationItem {
     margin: 10px 0;
     display: block;
-    width: 100%;
     text-align: center;
 }
 
 .NavigationItem a {
     color: #8f5c2c;
     text-decoration: none;
-    width: 100%;
     padding: 16px 10px;
-    margin: auto;
+    margin: auto 2px;
+    border-right: 2px solid rgb(197, 56, 56);
+
 }
 
-.NavigationItem a:hover,
-.NavigationItem a:active,
+
 .NavigationItem a.active{
-        background-color: #8f5c2c;
-        border-bottom: 4px solid royalblue;
-        color: #5d4a5d;
+        background-color: #f7e6b8;
+        color: #080807;
 }
+
+.NavigationItem a:hover {
+    animation: bounce 1s;
+    background-color:#a16e3e;
+    color: #a5a4a5;
+}
+
+
 
 
 @media (min-width: 500px) {
@@ -37,5 +43,22 @@
         display: block;
     }
 
+}
+
+@keyframes bounce {
+	0%, 20%, 60%, 100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+
+	40% {
+		-webkit-transform: translateY(-20px);
+		transform: translateY(-20px);
+	}
+
+	80% {
+		-webkit-transform: translateY(-10px);
+		transform: translateY(-10px);
+	}
 }
 

@@ -4,6 +4,8 @@
     border: black solid 2px;
     flex-basis: 100%;
     margin: auto;
+    box-shadow: 2px 2px 2px #966909;
+    background-color: #f1d18b;
 }
 
 

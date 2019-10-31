@@ -6,10 +6,10 @@ import classes from './OrderMenu.css';
 const orderMenu = (props) => {
   return (
     <div className={classes.OrderMenu}>
-      <p>
+      <h3>
         Current Price: {props
           .price
-          .toFixed(2)}</p>
+          .toFixed(2)}</h3>
       <div className={classes.IngredientsMenu}>
         <BuildControls
           ingredientAdded={props.ingredientAdded}
