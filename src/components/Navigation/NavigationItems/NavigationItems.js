@@ -5,14 +5,14 @@ import NavigationItem from './NavigationItem/NavigationItem';
 
 const navigationItems = (props) => (
     <ul className = {classes.NavigationItems}>
-        <NavigationItem link = '/' exact>Home</NavigationItem>
-        <NavigationItem link = '/sandwitch-builder' exact>Sandwitch Builder</NavigationItem>
+        <NavigationItem link = '/' exact><b>Home</b></NavigationItem>
+        <NavigationItem link = '/sandwitch-builder' exact><b>Sandwitch Builder</b></NavigationItem>
         {props.isAuthenticated ?
-            <NavigationItem link = '/orders'>Orders</NavigationItem> :
+            <NavigationItem link = '/orders'><b>Orders</b></NavigationItem> :
             null }
         {!props.isAuthenticated ?
-            <NavigationItem link ='/authentication'>Authentication</NavigationItem> :
-            <NavigationItem link ='/logout'>Logout</NavigationItem> }
+            <NavigationItem link ='/authentication'><b>Authentication</b></NavigationItem> :
+            <NavigationItem link ='/logout'><b>Logout</b></NavigationItem> }
     </ul>
 );
 

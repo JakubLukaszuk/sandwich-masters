@@ -1,29 +1,50 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto-Regular'),
+      local('Roboto Regular'),
+      url(./fonts/Roboto-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: bold;
+  font-weight: 700;
+  src: local('Roboto-Bold'),
+      local('Roboto Bold'),
+      url(./fonts/Roboto-Bold.ttf) format('truetype');
+}
+
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: bold;
+  font-weight: 700;
+  src: local('Raleway-Bold'),
+      local('Raleway Bold'),
+      url(./fonts/Raleway-Bold.ttf) format('truetype');
+}
+
 *{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-body {
-  font-family: 'Lato', sans-serif;
-  font-family: 'Muli', sans-serif;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
 
 body {
-  font-family: "Mukta", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   line-height: 1.5;
   display: flex;
   align-items: center;
+  text-decoration: none;
   justify-content: center;
   margin: 0;
   min-height: 100vh;
   background: white;
+  overflow-x: hidden;
 }
 
 button {
