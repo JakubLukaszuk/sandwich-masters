@@ -1,5 +1,5 @@
 .Home{
-    font-family: 'Raleway', sans-serif;
+    padding-top: 50px;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -44,13 +44,25 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    width: 100%;
 }
 
 .BackGroundImage{
-    width: auto;
-    transform: translateX(-20%);
-    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateX(-25%);
+    height: 100%
+}
+
+.AboutUs{
+    position: relative;
+}
+
+.ImageBurgerWrapper{
+    position: absolute;
+    visibility: none;
+    left: -1000%;
 }
 
 
@@ -82,17 +94,31 @@
 
 .CreateOwnSection button{
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-size: 1rem;
 }
 
 
-.BulitSandwitchImage{
+.CrateOwnImagesWrapper{
     padding-bottom: 30px;
     padding-top: 50px;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
+}
+
+.BulitSandwitchImage{
     height: auto;
     width: 75%;
+    margin: auto;
 }
+
+.SandwitchImage, .CrateOwnImagesWrapper p {
+    position: absolute;
+    left: -1000%;
+    visibility: none;
+}
+
 
 .LogoWrapper {
     height: 100px;
@@ -112,6 +138,8 @@ footer{
     padding-top: 20px;
     width: 100%;
     display: flex;
+    padding-left: 5%;
+    padding-right: 5%;
     flex-direction: column;
     align-items: center;
     font-size: 1.5rem;
@@ -120,6 +148,7 @@ footer{
 
 .LoginSection h3{
     font-size: 2rem;
+    text-align: center;
 }
 
 .LoginSection > button {
@@ -129,23 +158,52 @@ footer{
 }
 
 
+
+
 @media (min-width: 600px) {
 
-    .HeadSection > div{
-        height: 60%;
+    .AboutUs{
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+
+    .AboutUs > div{
+        margin: auto;
+        width: 500px;
     }
 
     .HeadSection h1 {
-        font-size: 6em;
+        font-size: 5rem;
     }
     .HeadSection h2 {
-        font-size: 3em;
+        font-size: 2rem;
     }
 
-    .BackGroundImage{
-        width: 100%;
+    .CreateOwnSection button{
+        margin-top: 50px;
+    }
+
+
+    .CrateOwnImagesWrapper p{
+        font-size: 1rem;
+        position: static;
+        visibility: visible;
+    }
+
+
+    .BulitSandwitchImage{
         height: auto;
-        transform: translateX(0%);
+        width: 25%;
+        margin: 0;
+    }
+
+    .SandwitchImage {
+        position: static;
+        visibility: visible;
+        width: 35%;
+        height: auto;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
     }
 
     .HeadSection{
@@ -153,3 +211,79 @@ footer{
         width: 100%;
     }
 }
+
+    @media (min-width: 800px) {
+
+
+        .BulitSandwitchImage{
+            height: auto;
+            width:35%;
+            margin: 0;
+        }
+
+        .BackGroundImage{
+            position: absolute;
+            transform: translateX(0);
+        }
+
+        .CrateOwnImagesWrapper p{
+            font-size: 1.2rem;
+        }
+
+        .HeadSection h1 {
+            font-size: 6rem;
+        }
+        .HeadSection h2 {
+            font-size: 3rem;
+        }
+
+    }
+
+    @media (min-width: 1250px) {
+        .ImageBurgerWrapper{
+            position: absolute;
+            left: 0;
+            top: 5%;
+            height: 350px;
+            width: auto;
+            transform: translateX(-50%);
+        }
+
+        .MirrorBurger{
+            left: 100%;
+            transform: scale(-1, 1) translateX(50%);
+        }
+
+        .ImageBurgerWrapper > img{
+            height: 100%;
+            width: auto;
+        }
+
+        .CrateOwnImagesWrapper{
+            margin-bottom: 30px;
+        }
+        .HeadSection h1 {
+            font-size: 8rem;
+        }
+        .HeadSection h2 {
+            font-size: 4rem;
+        }
+
+        .CreateOwnSection button{
+            margin-top: 50px;
+        }
+
+    }
+
+    @media (min-width: 1500px) {
+
+        .CrateOwnImagesWrapper p{
+            font-size: 1.5rem;
+        }
+
+        .BackGroundImage{
+            height: auto;
+            width: 100%;
+        }
+
+    }

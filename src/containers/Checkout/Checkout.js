@@ -4,42 +4,11 @@ import {connect} from 'react-redux';
 
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
 import ContactData from './ContactData/ContactData';
-import * as actions from '../../store/actions/index';
 
 
 class Checkout extends Component {
 
 
-  // checkBoolean(value){
-  //   switch(value){
-  //        case true:
-  //        case "true":
-  //            return true;
-  //       case false:
-  //       case "false":
-  //           return true;
-  //        default:
-  //            return false
-  //    }
-  // }
-
-  // componentWillMount() {
-  //   const query = new URLSearchParams(this.props.location.search);
-  //   const ingredients = {};
-  //   const bread = {};
-  //   let price = 0;
-  //   for (let param of query.entries()) {
-  //     if (this.checkBoolean(param[1]) === true)
-  //         bread[param[0]] =+ JSON.parse(param[1]);
-  //       else
-  //         if (param[0] === 'price')
-  //           price = param[1];
-  //         else
-  //           ingredients[param[0]] =+ param[1];
-
-  //   this.setState({ingredients: ingredients, bread: bread, totalPrice: price});
-  // }
-//}
   checkoutCancelledHandler = () => {
     this
       .props
