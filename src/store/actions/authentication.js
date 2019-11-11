@@ -10,7 +10,21 @@ export const authSuccess = (idToken, userId) => {
 }
 
 export const authFail = (error) => {
-  return {type: actionTypes.AUTH_FAIL, error: error}
+  console.log(error);
+  let err = error
+  if(error.message === 'INVALID_PASSWORD'){
+    err.message = 'Wrong Password';
+  }
+  else if(error.message === 'EMAIL_NOT_FOUND' || error.message === 'INVALID_EMAIL'){
+    err.message = 'Wrong Email';
+  }
+  else if(error.message === 'EMAIL_EXISTS'){
+    err.message = 'This email is registed';
+  }
+  else if(error.message === 'TOO_MANY_ATTEMPTS_TRY_LATER'){
+    err.message = 'Servers are overhelmed';
+  }
+  return {type: actionTypes.AUTH_FAIL, error: err}
 }
 
 export const checkAuthTimeout = (expirationTime) => {
@@ -79,4 +93,8 @@ export const authCheckState = () => {
       }
     }
   }
+}
+
+export const authErrorCleanese = () =>{
+  return {type: actionTypes.AUTH_ERROR_CLEANESE}
 }

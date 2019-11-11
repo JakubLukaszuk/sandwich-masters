@@ -1,3 +1,4 @@
+
 export const  checkValidity = (value, rules) =>{
     let validity = true;
 
@@ -17,3 +18,8 @@ export const  checkValidity = (value, rules) =>{
     }
     return validity;
   }
+
+  export const checkStringEquality = (str1, str2) => {
+    return str1.trim() === str2.trim()
+  }
+

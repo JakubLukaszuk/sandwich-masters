@@ -41,6 +41,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         authRedirectPath: action.path
     }
+    case actionTypes.AUTH_ERROR_CLEANESE:
+      return{
+        ...state,
+        error: null
+      }
     default:
       return state;
   }

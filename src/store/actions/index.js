@@ -2,5 +2,5 @@ export {addIngreadient, removeIngreadient, initIngreadients, initBread, changeBr
 from './sandwitchBuilder';
 export {purchaseSandwitch, purchaseInit, fetchOrders, orderDataCleanUp}
 from './order';
-export {auth, logout, setAuthRedirectPath, authCheckState}
+export {auth, logout, setAuthRedirectPath, authCheckState, authErrorCleanese}
 from './authentication';
