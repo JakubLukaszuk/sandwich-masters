@@ -45,7 +45,6 @@ const home = (props) => {
           </MessageBox>
         : null}
       <div className={classes.HeadSection}>
-        <img className={classes.BackGroundImage} src={headerBG} alt='BackGround'></img>
         <div>
           <h1>Sandwitch Masters</h1>
           <Separator/>

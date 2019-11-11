@@ -15,6 +15,10 @@
     color: whitesmoke;
     font-weight: bold;
     box-shadow: 1px 3px 3px #272623;
+    background-image: url(../../assets/images/homeHeadBG.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
 }
 
 .HeadSection h1 {
@@ -221,11 +225,6 @@ footer{
             margin: 0;
         }
 
-        .BackGroundImage{
-            position: absolute;
-            transform: translateX(0);
-        }
-
         .CrateOwnImagesWrapper p{
             font-size: 1.2rem;
         }
@@ -279,11 +278,6 @@ footer{
 
         .CrateOwnImagesWrapper p{
             font-size: 1.5rem;
-        }
-
-        .BackGroundImage{
-            height: auto;
-            width: 100%;
         }
 
     }
