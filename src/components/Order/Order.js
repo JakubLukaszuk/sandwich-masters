@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Separator from '../../components/UI/Separator/Separator'
 import classes from './Order.css';
 
 const order = (props) => {
@@ -25,26 +26,35 @@ const order = (props) => {
         );
     }
 
-    const ingradientOutput = ingredients.map(ingradient => {
-        return <span
-            key = {ingradient.name}>
-            {ingradient.name} ({ingradient.amout})</span>;
+    const ingradientOutput = ingredients.map((ingradient, index) => {
+        if(index < Object.keys(ingredients).length-1)
+            return <span key = {ingradient.name}>
+                {ingradient.name}: {ingradient.amout}, </span>;
+            else
+                return <span key = {ingradient.name}>
+                {ingradient.name}: {ingradient.amout}</span>;
     })
 
-    const breadOutput = bread.map((breadProp) => {
+    const breadOutput = bread.map((breadProp, index) => {
         if(breadProp.value)
         {
-             return <span key = {breadProp.name}>
-             {breadProp.name}
-         </span>;
+            if(index < Object.keys(bread).length-1)
+                return <span key = {breadProp.name}>
+                    {breadProp.name}, </span>;
+            else
+                return <span key = {breadProp.name}>
+                    {breadProp.name} </span>;
         }
     })
 
     return(
         <div className = {classes.Order}>
-        <p>Ingradients: {ingradientOutput}</p>
-        <p>Bread: {breadOutput.every(feature => feature === undefined) ? 'standard' : breadOutput} </p>
-        <p>Price: <strong>{props.price}</strong></p>
+        <p> <strong>Ingradients:</strong> {ingradientOutput}</p>
+        <p> <strong>Bread:</strong> {breadOutput.every(feature => feature === undefined) ? 'standard' : breadOutput} </p>
+        <Separator style={{
+            width: '100%'
+          }}/>
+        <p><strong> Price: {props.price}</strong></p>
     </div>
     );
 };

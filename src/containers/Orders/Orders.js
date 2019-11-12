@@ -6,6 +6,8 @@ import axios from '../../axios-orders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import Separator from '../../components/UI/Separator/Separator';
+import classes from './Orders.css';
 
 class Orders extends Component{
 
@@ -26,8 +28,10 @@ class Orders extends Component{
             ))
         }
         return(
-            <div>
-                {orders}
+            <div className = {classes.Orders}>
+                <h3 className = {classes.OrdersHead}>Your orders</h3>
+                <Separator/>
+                {orders ? orders : <p>You haven't ordered anything yet.</p>}
             </div>
         );
     }

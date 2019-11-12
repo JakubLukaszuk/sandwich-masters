@@ -170,8 +170,8 @@ class Authentication extends Component {
       <div className={classes.Auth}>
         {redirect}
         {this.state.isSingIn
-          ? <h3>SIGN UP</h3>
-          : <h3>SIGN IN</h3>}
+          ? <h3 className = {classes.AuthHead}>SIGN UP</h3>
+          : <h3 className = {classes.AuthHead}>SIGN IN</h3>}
           {errorMessage}
           {this.state.message ? <p>{this.state.message}</p> : null}
         <form onSubmit={this.submitHandler}>
