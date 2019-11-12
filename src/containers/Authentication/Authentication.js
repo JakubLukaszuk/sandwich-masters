@@ -21,7 +21,8 @@ class Authentication extends Component {
         value: '',
         validation: {
           required: true,
-          isEmail: true
+          isEmail: true,
+          maxLength: 24
         },
         valid: false,
         toutched: false
@@ -35,7 +36,8 @@ class Authentication extends Component {
         value: '',
         validation: {
           required: true,
-          minLength: 8
+          minLength: 8,
+          maxLength: 16
         },
         valid: false,
         toutched: false

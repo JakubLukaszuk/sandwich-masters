@@ -12,6 +12,9 @@ export const  checkValidity = (value, rules) =>{
     if(rules.minLength){
       validity = value.length >= rules.minLength;
     }
+    if(rules.maxLength){
+      validity = value.length <= rules.maxLength;
+    }
     if(rules.isEmail){
         const pattern = /\S+@\S+\.\S+/;
         validity = pattern.test(value) && validity;

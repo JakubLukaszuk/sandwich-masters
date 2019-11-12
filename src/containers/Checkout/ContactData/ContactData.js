@@ -22,7 +22,8 @@ class ContactData extends Component {
         value:'',
         validation:{
           required: true,
-          minLength: 2
+          minLength: 2,
+          maxLength: 32
         },
         valid: false,
         toutched: false
@@ -35,7 +36,8 @@ class ContactData extends Component {
         },
         value:'',
         validation:{
-          required: true
+          required: true,
+          maxLength: 32
         },
         valid: false,
         toutched: false
@@ -48,7 +50,8 @@ class ContactData extends Component {
         },
         value:'',
         validation:{
-          required: true
+          required: true,
+          maxLength: 32
         },
         valid: false,
         toutched: false
@@ -61,7 +64,8 @@ class ContactData extends Component {
         },
         value:'',
         validation:{
-          required: true
+          required: true,
+          maxLength: 9
         },
         valid: false,
         toutched: false
@@ -70,7 +74,8 @@ class ContactData extends Component {
         elementType: 'input',
         elemetConfig:{
           type: 'email',
-          placeholder: 'Your e-mail'
+          placeholder: 'Your e-mail',
+          maxLength: 24
         },
         value:'',
         validation:{
@@ -87,7 +92,8 @@ class ContactData extends Component {
         },
         value:'',
         validation:{
-          required: true
+          required: true,
+          maxLength: 12
         },
         valid: false,
         toutched: false
