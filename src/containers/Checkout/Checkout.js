@@ -5,52 +5,43 @@ import {connect} from 'react-redux';
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
 import ContactData from './ContactData/ContactData';
 
+const Checkout = props => {
 
-class Checkout extends Component {
-
-
-  checkoutCancelledHandler = () => {
-    this
-      .props
+  const checkoutCancelledHandler = () => {
+    props
       .history
       .goBack();
   }
 
-  checkoutContinuedHandler = () => {
-    this
-      .props
+  const checkoutContinuedHandler = () => {
+    props
       .history
       .replace('/checkout/contact-data');
   }
 
-  render() {
     let summary = <Redirect to="/"/>
-    if (this.props.ingredients) {
-      const purchsedPredirected = this.props.purchased ? <Redirect to='/'/> : null;
+    if (props.ingredients) {
+      const purchsedPredirected = props.purchased
+        ? <Redirect to='/'/>
+        : null;
       summary = (
         <div>
-        {purchsedPredirected}
+          {purchsedPredirected}
           <CheckoutSummary
-            ingredients={this.props.ingredients}
-            bread={this.props.bread}
-            checkoutCancelled={this.checkoutCancelledHandler}
-            checkoutContinued={this.checkoutContinuedHandler}
-            />
-            <Route path={this.props.match.path + '/contact-data'} component={ContactData}
-           />
-        </div>) }
-        return summary;
-      }
+            ingredients={props.ingredients}
+            bread={props.bread}
+            checkoutCancelled={checkoutCancelledHandler}
+            checkoutContinued={checkoutContinuedHandler}/>
+          <Route path={props.match.path + '/contact-data'} component={ContactData}/>
+        </div>
+      )
     }
+    return summary;
+  }
+
 
 const mapStateToProps = state => {
-  return{
-    ingredients: state.sandwitchBuilderReducer.ingredients,
-    bread: state.sandwitchBuilderReducer.bread,
-    purchased: state.orderRecuder.purchased
-  }
+  return {ingredients: state.sandwitchBuilderReducer.ingredients, bread: state.sandwitchBuilderReducer.bread, purchased: state.orderRecuder.purchased}
 }
-
-
 
 export default connect(mapStateToProps)(Checkout);

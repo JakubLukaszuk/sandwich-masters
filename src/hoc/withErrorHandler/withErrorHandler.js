@@ -1,47 +1,45 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import Modal from '../../components/UI/Modal/Modal';
 import Aux from '../Auxlary/Axulary'
 
 const withErrorHandler = (WrappedComponent, axios) => {
-  return  class extends Component {
-    state = {
-        error: null,
-    }
+  return  props => {
+    const[error, setError] = useState(null)
 
-    componentWillMount() {
-      this.requestInterceptor = axios.interceptors.request.use(null, request => {
-        this.setState({error: null})
+
+      const requestInterceptor = axios.interceptors.request.use(null, request => {
+        setError(null);
         return request;
       })
-      this.responseInterceptor = axios.interceptors.response.use(res => res, error =>{
-        this.setState({error: error})
+      const responseInterceptor = axios.interceptors.response.use(res => res, error =>{
+       setError(error);
       });
+
+    const  errrorConfirmedHandler = () =>{
+      setError(null);
     }
 
-    errrorConfirmedHandler = () =>{
-      this.setState({error: null})
-    }
+    useEffect(() =>{
+      return() => {
+        axios.interceptors.request.eject(requestInterceptor);
+        axios.interceptors.request.eject(responseInterceptor);
+      }
+    }, [requestInterceptor, responseInterceptor])
 
-    componentWillUnmount() {
-      axios.interceptors.request.eject(this.requestInterceptor);
-      axios.interceptors.request.eject(this.responseInterceptor);
-    }
-
-      render(){
         return (
             <Aux>
               <Modal
-                show = {this.state.error}
-                modalClosed = {this.errrorConfirmedHandler}>
-                {this.state.error ? this.state.error.message : null}
+                show = {error}
+                modalClosed = {errrorConfirmedHandler}>
+                {error ? error.message : null}
               </Modal>
-              <WrappedComponent {...this.props}/>
+              <WrappedComponent {...props}/>
             </Aux>
           );
       }
 
   }
-}
+
 
 export default withErrorHandler;

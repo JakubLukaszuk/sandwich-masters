@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 
 import Order from '../../components/Order/Order';
@@ -9,33 +9,30 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import Separator from '../../components/UI/Separator/Separator';
 import classes from './Orders.css';
 
-class Orders extends Component{
+const Orders = props => {
+    useEffect(() =>{
+        props.onFeatchOrders(props.token,props.userId);
+    }, [])
 
-
-    componentDidMount(){
-        this.props.onFeatchOrders(this.props.token,this.props.userId);
-    }
-
-    render() {
-        let orders = <Spinner/>;
-        if(!this.props.loading){
-            console.log(this.props.orders);
-            orders = this.props.orders.map(order => (
-                <Order key = {order.id}
-                ingredients = {order.ingredients}
-                bread = {order.bread}
-                price = {order.price}/>
+    let orders = <Spinner/>;
+    if(!props.loading){
+        console.log(props.orders);
+        orders = props.orders.map(order => (
+            <Order key = {order.id}
+            ingredients = {order.ingredients}
+            bread = {order.bread}
+            price = {order.price}/>
             ))
-        }
-        return(
-            <div className = {classes.Orders}>
-                <h3 className = {classes.OrdersHead}>Your orders</h3>
-                <Separator/>
-                {orders ? orders : <p>You haven't ordered anything yet.</p>}
-            </div>
+    }
+    return(
+        <div className = {classes.Orders}>
+            <h3 className = {classes.OrdersHead}>Your orders</h3>
+            <Separator/>
+            {orders ? orders : <p>You haven't ordered anything yet.</p>}
+        </div>
         );
     }
-}
+
 
 const mapStateToProps = state => {
     return{

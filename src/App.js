@@ -32,7 +32,7 @@ const App = props =>  {
     let routes = (
       <Switch>
         <Route path="/sandwitch-builder" component={SandwitchBuilder}/>
-        <Route path='/authentication' render={() => <Authentication/>}/>
+        <Route path='/authentication' render={(props) => <Authentication {...props}/>}/>
         <Route path="/" exact component={Home}/>
         <Redirect to="/"/>
       </Switch>
@@ -40,12 +40,12 @@ const App = props =>  {
     if (props.isAuthenitcated) {
       routes = (
         <Switch>
-          <Route path="/sandwitch-builder" render={() => <SandwitchBuilder/>}/>
+          <Route path="/sandwitch-builder" render={(props) => <SandwitchBuilder {...props}/>}/>
           <Route path="/" exact component={Home}/>
-          <Route path="/checkout" render={() => <Checkout/>}/>
-          <Route path="/orders" render={Orders}/>
+          <Route path="/checkout" render={(props) => <Checkout {...props}/>}/>
+          <Route path="/orders" render={(props) =><Orders {...props}/>}/>
           <Route path='/logout' component={Logout}/>
-          <Route path='/authentication' render={() => <Authentication/>}/>
+          <Route path='/authentication' render={(props) => <Authentication {...props}/>}/>
           <Redirect to="/"/>
         </Switch>
       );
