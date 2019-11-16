@@ -1,54 +1,51 @@
-import React, {Component} from 'react';
+import React, {useEffect, Suspense} from 'react';
 import {Route, Switch, withRouter, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import asyncComponent from './hoc/asyncComponent/asyncComponet';
-
+import Spinner from './components/UI/Spinner/Spinner';
 import Layout from './containers/Layout/Layout';
 import SandwitchBuilder from './containers/SandwitchBuilder/SandwitchBuilder';
 import Home from './containers/Home/Home';
 import Logout from './containers/Authentication/Logout/Logout';
 import * as actions from './store/actions/index';
 
-const asyncCheckout  = asyncComponent(() => {
+const Checkout  = React.lazy(() => {
   return import ('./containers/Checkout/Checkout');
 });
 
-const asyncOrders  = asyncComponent(() => {
+const Orders  = React.lazy(() => {
   return import ('./containers/Orders/Orders');
 });
 
-const asyncAuth  = asyncComponent(() => {
+const Authentication  = React.lazy(() => {
   return import ('./containers/Authentication/Authentication');
 });
 
 
-class App extends Component {
+const App = props =>  {
 
-  componentDidMount() {
-    this
-      .props
+  useEffect(() => {
+      props
       .onTyRefreshSignup();
-  }
+  }, []);
 
-  render() {
     let routes = (
       <Switch>
         <Route path="/sandwitch-builder" component={SandwitchBuilder}/>
-        <Route path='/authentication' component={asyncAuth}/>
+        <Route path='/authentication' render={() => <Authentication/>}/>
         <Route path="/" exact component={Home}/>
         <Redirect to="/"/>
       </Switch>
     );
-    if (this.props.isAuthenitcated) {
+    if (props.isAuthenitcated) {
       routes = (
         <Switch>
-          <Route path="/sandwitch-builder" component={SandwitchBuilder}/>
+          <Route path="/sandwitch-builder" render={() => <SandwitchBuilder/>}/>
           <Route path="/" exact component={Home}/>
-          <Route path="/checkout" component={asyncCheckout}/>
-          <Route path="/orders" component={asyncOrders}/>
+          <Route path="/checkout" render={() => <Checkout/>}/>
+          <Route path="/orders" render={Orders}/>
           <Route path='/logout' component={Logout}/>
-          <Route path='/authentication' component={asyncAuth}/>
+          <Route path='/authentication' render={() => <Authentication/>}/>
           <Redirect to="/"/>
         </Switch>
       );
@@ -57,12 +54,12 @@ class App extends Component {
     return (
       <div>
         <Layout>
-          {routes}
+          <Suspense fallback = {Spinner}>{routes}</Suspense>
         </Layout>
       </div>
     );
   }
-}
+
 
 const mapStateToProps = state => {
   return {
