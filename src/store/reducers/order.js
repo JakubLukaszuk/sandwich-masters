@@ -34,7 +34,7 @@ const reducer = (state = initialState, action) => {
                 orders: state.orders.concat(newOrder),
                 purchased: true,
                 orderData: {...action.order.orderData,
-                email: null}
+                    email: null}
             };
         case actionTypes.ORDER_DATA_CLEAN_UP:
             return{

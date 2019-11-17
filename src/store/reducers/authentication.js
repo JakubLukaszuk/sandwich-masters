@@ -34,6 +34,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         idToken: null,
+        userId: null,
         loading: false
       }
     case actionTypes.SET_AUTH_REDIRECT_PATH:

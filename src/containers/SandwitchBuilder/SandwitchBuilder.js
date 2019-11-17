@@ -11,7 +11,7 @@ import OrderMenu from '../../components/OrderMenu/OrderMenu'
 import axiosOrders from '../../axios-orders';
 import * as actions from '../../store/actions/index';
 
-const SandwitchBuilder = props => {
+export const SandwitchBuilder = props => {
 
   const [purchasing,
     setPurchasing] = useState(false);

@@ -1,5 +1,5 @@
 import React, {useEffect, Suspense} from 'react';
-import {Route, Switch, Router, Redirect} from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import Spinner from './components/UI/Spinner/Spinner';
