@@ -1,5 +1,5 @@
 import React, {useEffect, Suspense} from 'react';
-import {Route, Switch, withRouter, Redirect} from 'react-router-dom';
+import {Route, Switch, Router, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import Spinner from './components/UI/Spinner/Spinner';
@@ -72,4 +72,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default (connect(mapStateToProps, mapDispatchToProps)(App));
