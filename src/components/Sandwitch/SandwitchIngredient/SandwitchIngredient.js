@@ -1,16 +1,15 @@
-import React, {Component} from 'react';
+import React  from 'react';
 
 import classes from './SandwitchIngredient.css';
 
-class SandwitchIngredient extends Component
+const SandwitchIngredient  = props =>
 {
-    render(){
         let ingredient = null;
         let breadClasses = [];
         let seeds = [];
 
-        if(this.props.bread){
-            this.props.bread.forEach(element => {
+        if(props.bread){
+            props.bread.forEach(element => {
                 if(element === 'multigrain'){
                     breadClasses = [...breadClasses, classes.Multigrain]
                 }
@@ -25,7 +24,7 @@ class SandwitchIngredient extends Component
             });
         }
 
-        switch(this.props.type){
+        switch(props.type){
             case ('bread-bottom'):
                 ingredient = <div className = {[classes.BreadBottom, breadClasses.join(' ')].join(' ')}></div>
                 break;
@@ -62,11 +61,7 @@ class SandwitchIngredient extends Component
         }
         return ingredient;
     };
-}
 
-// SandwitchIngredient.propTypes = {
-//     type: PropTypes.string.isRequired
-// };
 
 export default SandwitchIngredient;
 

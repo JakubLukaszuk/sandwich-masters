@@ -23,11 +23,10 @@ const Authentication  = React.lazy(() => {
 
 
 const App = props =>  {
-
+  const {onTyRefreshSignup} = props;
   useEffect(() => {
-      props
-      .onTyRefreshSignup();
-  }, []);
+      onTyRefreshSignup();
+  }, [onTyRefreshSignup]);
 
     let routes = (
       <Switch>

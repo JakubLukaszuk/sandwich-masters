@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 
 import Aux from '../../hoc/Auxlary/Axulary';
@@ -10,34 +10,31 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import OrderMenu from '../../components/OrderMenu/OrderMenu'
 import axiosOrders from '../../axios-orders';
 import * as actions from '../../store/actions/index';
-import { throwStatement } from '@babel/types';
 
+const SandwitchBuilder = props => {
 
-class SandwitchBuilder extends Component {
+  const [purchasing,
+    setPurchasing] = useState(false);
 
-  state = {
-    purchasing: false,
-    // loading: false,
-    // error: false
-  }
+  const {onInitIngreadients,onInitBread,orderDataCleanUp } = props;
+  useEffect(() => {
+    onInitIngreadients();
+    onInitBread();
+    orderDataCleanUp();
+  }, [onInitIngreadients,onInitBread,orderDataCleanUp])
 
-  componentDidMount() {
-    this.props.onInitIngreadients();
-    this.props.onInitBread();
-    this.props.orderDataCleanUp();
-  }
-
-
-  purchaseHandler = () => {
-    if(this.props.isAuthenticated){
-      this.setState({purchasing: true})
-    }else{
-      this.props.onSetAuthRedirectPath('/checkout');
-      this.props.history.push('/authentication');
+  const purchaseHandler = () => {
+    if (props.isAuthenticated) {
+      setPurchasing(true)
+    } else {
+      props.onSetAuthRedirectPath('/checkout');
+      props
+        .history
+        .push('/authentication');
     }
   }
 
-  updatePurchaseState(ingredients) {
+  const updatePurchaseState = (ingredients) => {
     const sum = Object
       .keys(ingredients)
       .map(igKey => {
@@ -49,63 +46,60 @@ class SandwitchBuilder extends Component {
     return sum > 0;
   }
 
-
-  purchaseCancleHandler = () => {
-    this.setState({purchasing: false});
+  const purchaseCancleHandler = () => {
+    setPurchasing(false)
   }
 
-  purchaseContinueHandler = () => {
-    this.props.onInitPurchase();
-    this.props.history.push('/checkout');
+  const purchaseContinueHandler = () => {
+    props.onInitPurchase();
+    props
+      .history
+      .push('/checkout');
   }
 
-  render() {
-    const disabledInfo = {
-      ...this.props.ingredients
-    }
-
-    for (let key in disabledInfo) {
-      disabledInfo[key] = disabledInfo[key] <= 0;
-    }
-
-    let orderSummary;
-
-    let sandwitch = this.props.error
-      ? <p>Ingreadiens can't be loaded</p>
-      : <Spinner/>
-
-    if (this.props.ingredients && this.props.bread) {
-      sandwitch = <Aux>
-        <Sandwitch ingredients={this.props.ingredients} bread={this.props.bread}/>
-        <OrderMenu
-          ingredientAdded={this.props.onIngreadientAdded}
-          ingredientRemoved={this.props.onIngreadientRemoved}
-          disabled={disabledInfo}
-          pruchaseable={this.updatePurchaseState(this.props.ingredients)}
-          orderd={this.purchaseHandler}
-          price={this.props.sandwitchPrice}
-          isAuthenticated = {this.props.isAuthenticated}
-          changedBread={this.props.onBreadPropertyChanged}
-          checkedBread={this.props.bread}/>
-      </Aux>
-      orderSummary = <OrderSummary
-        ingredients={this.props.ingredients}
-        price={this.props.sandwitchPrice}
-        purchaseCanclled={this.purchaseCancleHandler}
-        purchaseContinued={this.purchaseContinueHandler}/>
-    }
-
-
-
-    return (
-      <Aux>
-        <Modal show={this.state.purchasing} modalClosed={this.purchaseCancleHandler}>
-          {orderSummary}
-        </Modal>
-        {sandwitch}
-      </Aux>
-    )
+  const disabledInfo = {
+    ...props.ingredients
   }
+
+  for (let key in disabledInfo) {
+    disabledInfo[key] = disabledInfo[key] <= 0;
+  }
+
+  let orderSummary;
+
+  let sandwitch = props.error
+    ? <p>Ingreadiens can't be loaded</p>
+    : <Spinner/>
+
+  if (props.ingredients && props.bread) {
+    sandwitch = <Aux>
+      <Sandwitch ingredients={props.ingredients} bread={props.bread}/>
+      <OrderMenu
+        ingredientAdded={props.onIngreadientAdded}
+        ingredientRemoved={props.onIngreadientRemoved}
+        disabled={disabledInfo}
+        pruchaseable={updatePurchaseState(props.ingredients)}
+        orderd={purchaseHandler}
+        price={props.sandwitchPrice}
+        isAuthenticated={props.isAuthenticated}
+        changedBread={props.onBreadPropertyChanged}
+        checkedBread={props.bread}/>
+    </Aux>
+    orderSummary = <OrderSummary
+      ingredients={props.ingredients}
+      price={props.sandwitchPrice}
+      purchaseCanclled={purchaseCancleHandler}
+      purchaseContinued={purchaseContinueHandler}/>
+  }
+
+  return (
+    <Aux>
+      <Modal show={purchasing} modalClosed={purchaseCancleHandler}>
+        {orderSummary}
+      </Modal>
+      {sandwitch}
+    </Aux>
+  )
 }
 
 const mapStateToProps = state => {
@@ -115,7 +109,7 @@ const mapStateToProps = state => {
     sandwitchPrice: state.sandwitchBuilderReducer.totalPrice,
     error: state.sandwitchBuilderReducer.error,
     isAuthenticated: state.authenticationReducer.idToken !== null
-    };
+  };
 }
 
 const mapDispatchToProps = dispatch => {

@@ -10,9 +10,11 @@ import Separator from '../../components/UI/Separator/Separator';
 import classes from './Orders.css';
 
 const Orders = props => {
+    const {onFeatchOrders} = props;
+
     useEffect(() =>{
-        props.onFeatchOrders(props.token,props.userId);
-    }, [])
+        onFeatchOrders(props.token,props.userId);
+    }, [onFeatchOrders])
 
     let orders = <Spinner/>;
     if(!props.loading){
