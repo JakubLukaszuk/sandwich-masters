@@ -13,12 +13,11 @@ const Orders = props => {
     const {onFeatchOrders} = props;
 
     useEffect(() =>{
-        onFeatchOrders(props.token,props.userId);
+        onFeatchOrders(props.token, props.userId);
     }, [onFeatchOrders])
 
     let orders = <Spinner/>;
     if(!props.loading){
-        console.log(props.orders);
         orders = props.orders.map(order => (
             <Order key = {order.id}
             ingredients = {order.ingredients}

@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import headerBG from '../../assets/images/homeHeadBG.png';
 import builtSandwitch from '../../assets/images/builtSandwitch.png';
 import sandwitch from '../../assets/images/sandwitch.png';
 import burger from '../../assets/images/burger.png';

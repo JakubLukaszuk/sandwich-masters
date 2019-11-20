@@ -10,7 +10,6 @@ export const authSuccess = (idToken, userId) => {
 }
 
 export const authFail = (error) => {
-  console.log(error);
   let err = error
   if(error.message === 'INVALID_PASSWORD'){
     err.message = 'Wrong Password';
