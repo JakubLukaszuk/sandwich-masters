@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 
@@ -6,6 +6,12 @@ import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSumm
 import ContactData from './ContactData/ContactData';
 
 const Checkout = props => {
+
+  const scrollRef = useRef(null);
+
+  const scrollToBottom = () => {
+    scrollRef.current.scrollIntoView({ behavior: "smooth" })
+  }
 
   const checkoutCancelledHandler = () => {
     props
@@ -17,6 +23,9 @@ const Checkout = props => {
     props
       .history
       .replace('/checkout/contact-data');
+      setTimeout(()=> {
+        scrollToBottom();
+      }, 100)
   }
 
     let summary = <Redirect to="/"/>
@@ -31,8 +40,10 @@ const Checkout = props => {
             ingredients={props.ingredients}
             bread={props.bread}
             checkoutCancelled={checkoutCancelledHandler}
-            checkoutContinued={checkoutContinuedHandler}/>
+            checkoutContinued={checkoutContinuedHandler}
+            />
           <Route path={props.match.path + '/contact-data'} component={ContactData}/>
+          <div ref={scrollRef}/>
         </div>
       )
     }
