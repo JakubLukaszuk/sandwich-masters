@@ -161,7 +161,7 @@ const Authentication = props =>  {
     }
 
     return (
-      <div className={classes.Auth}>
+      <div className={[classes.Auth, isSignIn ? classes.SignIn : classes.SignUp].join(' ')}>
         {redirect}
         {isSignIn
           ? <h3 className = {classes.AuthHead}>SIGN UP</h3>

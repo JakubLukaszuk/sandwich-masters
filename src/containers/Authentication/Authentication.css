@@ -2,13 +2,22 @@
     margin: 20px auto;
     width: 100%;
     text-align: center;
-    box-shadow:  0 2px 3px solid #ccc;
-    border: 1px solid #eee;
-    padding: 10px;
+    box-shadow:  1px 3px 5px solid #cccc;
+    border: 2px solid #eee;
+    padding: 10px 10px 20px 10px;
+}
+
+.SignIn{
+    background-color: #EDF7F6;
+}
+
+.SignUp{
+    background-color: none;
 }
 
 .AuthHead{
-    padding: 15px 0 50px 0;
+    padding: 15px 0 40px 0;
+    font-size: 2.2em;
 }
 
 .Error{
